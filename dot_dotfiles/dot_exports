@@ -1,0 +1,41 @@
+# .exports
+
+# Ruta base de Oh My Zsh
+export ZSH="$HOME/.oh-my-zsh"
+
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Docker CLI plugins (Apple Silicon + Intel Homebrew)
+if [ -d "/opt/homebrew/lib/docker/cli-plugins" ]; then
+  export DOCKER_CLI_PLUGIN_PATH="/opt/homebrew/lib/docker/cli-plugins"
+elif [ -d "/usr/local/lib/docker/cli-plugins" ]; then
+  export DOCKER_CLI_PLUGIN_PATH="/usr/local/lib/docker/cli-plugins"
+fi
+
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+
+
+# NPM
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
+
+# Rust toolchain
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Cursor
+export PATH="/Applications/Cursor.app/Contents/Resources/app/bin:$PATH"
+# Cursor as default editor.
+export EDITOR='cursor --wait'
+
+# Starship
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+
+# Language
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+
+# Historial
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000

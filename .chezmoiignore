@@ -1,0 +1,12 @@
+LICENSE
+README.md
+AGENTS.md
+example_of_mac_os_config.sh.tmpl
+
+# Archivos temporales
+*.swp
+*.tmp
+
+# Configuración local sensible
+.env
+

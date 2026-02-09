@@ -1,0 +1,7 @@
+{
+	"auths": {},
+	"currentContext": "colima",
+	"aliases": {
+		"builder": "buildx"
+	}
+}

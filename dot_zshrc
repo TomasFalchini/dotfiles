@@ -1,0 +1,67 @@
+# Tema anulado (usa starship)
+ZSH_THEME=""
+
+# ==============================
+# PLUGINS DE ZSH
+# ==============================
+plugins=(
+  git
+  aws
+  docker
+  kubectl
+  terraform
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+# ==============================
+# LOAD DOTFILES
+# ==============================
+# Load dotfiles
+for file in ~/.dotfiles/.{aliases,functions,exports}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
+
+
+if [ -f "$ZSH/oh-my-zsh.sh" ]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
+
+# ==============================
+# MEJORAS DE TERMINAL
+# ==============================
+
+# Zoxide: "cd" inteligente
+eval "$(zoxide init zsh)"
+
+# Direnv: variables de entorno automáticas
+eval "$(direnv hook zsh)"
+
+# Atuin: historial mejorado
+eval "$(atuin init zsh)"
+
+# ==============================
+# AUTOCOMPLETADOS Y COLOR
+# ==============================
+# Completado de kubectl y helm
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
+if command -v helm &> /dev/null; then
+  source <(helm completion zsh)
+fi
+
+
+# ==============================
+# HISTORIAL CONFIGURATION
+# ==============================
+setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY
+
+# Autosuggestions (color tenue)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+# Syntax highlighting (al final)
+if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi

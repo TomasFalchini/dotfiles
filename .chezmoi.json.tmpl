@@ -1,0 +1,10 @@
+{
+  "data": {
+    "email": {{ promptString "What is your email" | quote }},
+    "rootUserPath": {{ promptString "What is your user path" | quote }},
+    "userName": {{ promptString "What is your user name" | quote }},
+    "setSshKey": {{ promptBool "Do you want to set up an SSH key" }},
+    "gitSigningKeyName": "id_github",
+    "githubUsername": {{ promptString "What is your username for github GH tool" | quote }}
+  }
+}

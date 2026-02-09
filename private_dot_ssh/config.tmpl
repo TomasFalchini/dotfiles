@@ -1,0 +1,9 @@
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+
+Host github.com
+  IdentityFile ~/.ssh/{{ .gitSigningKeyName }}
+
+Include /Users/{{ .chezmoi.homeDir }}/.colima/ssh_config
+

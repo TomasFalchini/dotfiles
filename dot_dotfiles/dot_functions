@@ -1,0 +1,62 @@
+# .functions
+
+# mcd : Makes a new dir and jumps into it.
+
+function mcd() {
+	mkdir -p "$1" && cd "$1";
+}
+
+# zipf : To create a ZIP archive of a folder
+
+function zipf() {
+	zip -r "$1".zip "$1" ;
+}
+
+# extract : extract any file with this command.
+
+extract () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1     ;;
+      *.tar.gz)    tar xzf $1     ;;
+      *.bz2)       bunzip2 $1     ;;
+      *.rar)       unrar e $1     ;;
+      *.gz)        gunzip $1      ;;
+      *.tar)       tar xf $1      ;;
+      *.tbz2)      tar xjf $1     ;;
+      *.tgz)       tar xzf $1     ;;
+      *.zip)       unzip $1       ;;
+      *.Z)         uncompress $1  ;;
+      *.7z)        7z x $1        ;;
+      *)     echo "'$1' cannot be extracted via extract()" ;;
+       esac
+   else
+       echo "'$1' is not a valid file"
+   fi
+}
+
+# Jira + fzf selector para abrir tickets
+function jira-open() {
+  local issue=$(jira ls -a me | fzf --prompt="Select Jira issue: " | awk '{print $1}')
+  if [[ -n "$issue" ]]; then
+    open "$(jira view $issue --browse)"
+  fi
+}
+
+function task() {
+    jira issue create -tTask -s "$1" -d "$2"
+}
+
+# Buscar archivo y abrirlo con preview
+function preview() {
+  local file
+  file=$(fd --type f | fzf --preview 'bat --style=numbers --color=always --line-range :100 {}')
+  [[ -n "$file" ]] && open "$file"
+}
+
+# Ir a directorio con zoxide + fzf
+function zi() {
+  local dir
+  dir=$(zoxide query -l | fzf --preview 'eza -lh --color=always {} | head -20')
+  [[ -n "$dir" ]] && cd "$dir"
+}

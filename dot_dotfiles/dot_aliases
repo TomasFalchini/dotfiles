@@ -1,0 +1,49 @@
+# .aliases
+
+alias rm='rm -i' # safety first
+alias zshedit='$EDITOR ~/.zshrc' # Edit .zshrc config file
+alias finder='open -a Finder ./' # Opens current directory in MacOS Finder
+alias ~="cd ~" # Go Home
+alias dotfiles='curl -sfL https://raw.githubusercontent.com/tomasfalchini/dotfiles/master/.init_setup.sh | bash'
+
+# Colores y herramientas modernas
+alias ls="eza --icons --group-directories-first --color=auto"
+alias ll="eza -lh --icons --git"
+alias tree="eza -T --icons"
+alias cat="bat --paging=never"
+alias grep="rg"
+
+# Alias de productividad
+alias k="kubectl"
+alias kgp="kubectl get pods"
+alias kctx="kubectx"
+alias kns="kubens"
+alias tf="terraform"
+alias tfa="terraform apply -auto-approve"
+alias g="git"
+alias gs="git status"
+alias gp="git pull"
+alias gd="git diff"
+alias gc="git commit"
+alias cls="clear"
+alias ..="cd .."
+alias ...="cd ../.."
+
+# AWS helpers
+alias awsp="aws sso login"
+alias awsl="aws configure list"
+
+# GitHub CLI (gh) helpers
+alias ghpr="gh pr list"
+alias openpr="gh pr view --web"
+alias openrepo="gh repo view --web"
+alias ghcreate="gh pr create --fill"
+alias ghci="gh issue list"
+alias ghnew="gh issue create"
+alias ghclone="gh repo clone"
+
+# Jira CLI (go-jira) helpers
+alias jira="jira ls"
+alias todos="jira ls -s 'To Do'"
+alias inprogress="jira ls -s 'In Progress'"
+
